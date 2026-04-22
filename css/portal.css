@@ -1,0 +1,242 @@
+:root {
+    --navy-blue-search: #34495e; /* Fundo do bloco de busca */
+    --search-input-bg: rgba(255, 255, 255, 0.15); /* Input semi-transparente */
+    --search-focus-bg: #fff; /* Fundo branco ao focar */
+    --gray-sidebar: #e9ecef; /* Cinza do item ativo */
+    --text-navy: #34495e; /* Cor padrão de texto e ícones */
+    --bg-main: #f8f9fa; /* Fundo geral das páginas */
+}
+
+/* Reset Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    overflow-x: hidden;
+}
+
+.ava-header-top-white {
+    height: 70px; /* Aumentado para não parecer pequeno */
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px; /* Mais respiro nas laterais igual ao original */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Sombra suave (Box Shadow) */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); 
+    border-bottom: none; /* Removi a borda sólida para usar apenas a sombra */
+}
+
+.header-left-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-icon-btn {
+    font-size: 1.6rem;
+    color: #444;
+    cursor: pointer;
+}
+
+.ava-logo-top-white {
+    height: 38px; /* Aumentada conforme solicitado */
+    width: auto;
+}
+
+/* --- SIDEBAR --- */
+.ava-body {
+    display: flex;
+    padding-top: 70px;
+}
+
+.sidebar-clone {
+    width: 250px;
+    background: #fff;
+    height: calc(100vh - 70px);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    border-right: 1px solid #ddd;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+    z-index: 900;
+}
+
+/* ESTADO RECOLHIDO */
+.sidebar-clone.collapsed {
+    width: 80px;
+}
+
+/* BLOCO DE BUSCA */
+.search-block {
+    height: 60px;
+    background-color: var(--navy-blue-search);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.search-input-wrapper {
+    background: var(--search-input-bg);
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito de clique na busca igual ao AVA */
+.search-input-wrapper:focus-within {
+    background: var(--search-focus-bg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-input-wrapper input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white; /* Texto branco quando não focado */
+    font-size: 14px;
+    width: 100%;
+}
+
+.search-input-wrapper:focus-within input {
+    color: #333; /* Texto escuro quando focado */
+}
+
+.search-input-wrapper iconify-icon {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input-wrapper:focus-within iconify-icon {
+    color: #666; /* Ícone escuro quando focado */
+}
+
+.search-input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Ajustes da busca na Sidebar Recolhida */
+.sidebar-clone.collapsed .search-block {
+    padding: 10px 0;
+    justify-content: center;
+}
+
+.sidebar-clone.collapsed .search-input-wrapper {
+    width: 45px;
+    padding: 8px 0;
+    justify-content: center;
+}
+
+.sidebar-clone.collapsed .search-input-wrapper input {
+    display: none;
+}
+
+/* LINKS DO MENU */
+.side-nav-links {
+    padding: 10px 0;
+    width: 100%;
+}
+
+.nav-link-clone {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: var(--text-navy);
+    font-size: 15px;
+    transition: background 0.2s, padding 0.3s;
+    white-space: nowrap;
+}
+
+.nav-link-clone iconify-icon {
+    font-size: 1.4rem;
+    min-width: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Alinhamento de ícones na Sidebar Recolhida */
+.sidebar-clone.collapsed .nav-link-clone {
+    padding: 15px 0;
+    justify-content: center;
+    gap: 0;
+}
+
+.sidebar-clone.collapsed .menu-text {
+    display: none;
+}
+
+/* Hover e Ativo */
+.nav-link-clone:hover {
+    background-color: #f8f9fa;
+}
+
+.nav-link-clone.active {
+    background-color: var(--gray-sidebar);
+    border-left: 4px solid var(--navy-blue-search);
+    font-weight: 700;
+}
+
+/* --- CONTEÚDO PRINCIPAL --- */
+.ava-main-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 30px 40px;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ava-main-content.expanded {
+    margin-left: 80px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 75px; /* Ajustado para a nova altura do seu header com sombra */
+    right: 20px;
+    background: white;
+    min-width: 250px; /* Largura para comportar o texto do Ambiente */
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra mais profunda para o menu */
+    z-index: 1100;
+    border-radius: 8px;
+    border: 1px solid #f1f5f9;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+/* Efeito de hover nos itens do menu */
+.dropdown-menu a:hover, .dropdown-menu button:hover {
+    color: #004481 !important; /* Cor da Unisales no hover */
+}
+
+.header-right-group {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaço entre notificações e nome */
+}
+
+.user-profile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: #333;
+}

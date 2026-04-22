@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.login-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Lado da Imagem */
+.banner-side {
+    flex: 1.2;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) sepia(0.3) hue-rotate(-50deg);
+}
+
+/* Efeito avermelhado do print */
+.banner-side .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(183, 28, 28, 0.4);
+}
+
+/* Lado do Formulário */
+.form-side {
+    flex: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+    text-align: center;
+}
+
+.main-logo {
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.welcome-text {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.input-field {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-field label {
+    display: block;
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-field input:focus {
+    border-color: #004481;
+    box-shadow: 0 0 5px rgba(0, 68, 129, 0.2);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: #34495e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background: #2c3e50;
+}
+
+.form-footer {
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: #004481;
+}
+
+.form-footer a {
+    color: #004481;
+    text-decoration: none;
+    font-weight: bold;
+}

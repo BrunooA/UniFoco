@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portal Acadêmico :: UniSales</title>
+    <link rel="stylesheet" href="css/portal.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+
+<body>
+
+    <header class="ava-header-top-white">
+        <div class="header-left-group">
+            <iconify-icon icon="ri:menu-line" class="menu-icon-btn" id="menuBtn"></iconify-icon>
+            <img src="assets/unisales-logo.png" class="ava-logo-top-white">
+        </div>
+
+        <div class="right-section" style="display: flex; align-items: center; gap: 20px; padding-right: 20px;">
+            <iconify-icon icon="ri:notification-3-line"
+                style="font-size: 1.4rem; color: #666; cursor: pointer;"></iconify-icon>
+            <div class="profile-pill" id="profileTrigger"
+                style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                <div class="avatar-frame"
+                    style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; border: 1px solid #ddd;">
+                    <img id="user-avatar-img" src="assets/foto.jpg" alt="Perfil"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown-menu" id="userDropdown">
+            <div style="padding: 5px 0 10px 0;">
+                <p id="drop-full-name" style="font-weight: bold; font-size: 16px; margin-bottom: 5px; color: #334155;">
+                </p>
+                <p style="font-size: 13px; font-weight: bold; color: #475569; margin-top: 15px;">Ambiente: UNISALES
+                    (Graduação)</p>
+                <p style="font-size: 13px; color: #64748b;">Estudante</p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 10px 0;">
+
+            <a href="#"
+                style="display: flex; align-items: center; gap: 10px; padding: 10px 0; text-decoration: none; color: #475569; font-size: 14px;">
+                <iconify-icon icon="ri:user-line" style="font-size: 1.2rem;"></iconify-icon>
+                Minha conta
+            </a>
+
+            <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 5px 0;">
+
+            <button id="btnLogout"
+                style="display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: none; color: #475569; cursor: pointer; padding: 10px 0; font-size: 14px; text-align: left;">
+                <iconify-icon icon="ri:logout-box-r-line" style="font-size: 1.2rem;"></iconify-icon>
+                Sair
+            </button>
+        </div>
+    </header>
+
+    <div class="ava-body">
+        <aside class="sidebar-clone" id="sidebar">
+
+            <div class="search-block">
+                <div class="search-input-wrapper">
+                    <iconify-icon icon="ri:search-line" id="searchIcon"></iconify-icon>
+                    <input type="text" id="menuSearch" placeholder="Buscar...">
+                    <iconify-icon icon="ri:close-line" id="clearSearch"
+                        style="display: none; cursor: pointer;"></iconify-icon>
+                </div>
+            </div>
+
+            <nav class="side-nav-links">
+                <a href="#" class="nav-link-clone active">
+                    <iconify-icon icon="ri:home-5-line"></iconify-icon>
+                    <span class="menu-text">Home</span>
+                </a>
+                <a href="#" class="nav-link-clone">
+                    <iconify-icon icon="ri:book-open-line"></iconify-icon>
+                    <span class="menu-text">Disciplinas</span>
+                </a>
+                <a href="#" class="nav-link-clone">
+                    <iconify-icon icon="ri:megaphone-line"></iconify-icon>
+                    <span class="menu-text">Avisos</span>
+                </a>
+                <a href="#" class="nav-link-clone">
+                    <iconify-icon icon="ri:mail-line"></iconify-icon>
+                    <span class="menu-text">Mensagens</span>
+                </a>
+                <a href="#" class="nav-link-clone">
+                    <iconify-icon icon="ri:award-line"></iconify-icon>
+                    <span class="menu-text">Conquistas</span>
+                </a>
+                <a href="#" class="nav-link-clone">
+                    <iconify-icon icon="ri:calendar-event-line"></iconify-icon>
+                    <span class="menu-text">Calendário</span>
+                </a>
+                <a href="#" class="nav-link-clone">
+                    <iconify-icon icon="ri:tools-line"></iconify-icon>
+                    <span class="menu-text">Ferramentas</span>
+                </a>
+                <a href="#" class="nav-link-clone communities-item">
+                    <iconify-icon icon="ri:group-line"></iconify-icon>
+                    <span class="menu-text">Comunidades</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="ava-main-content" id="mainContent">
+        </main>
+    </div>
+
+    <script src="js/portal.js"></script>
+</body>
+
+</html>
