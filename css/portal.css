@@ -240,3 +240,125 @@ body {
     font-weight: 600;
     color: #333;
 }
+
+/* Estilos do Conteúdo Principal */
+.welcome-header {
+    margin-bottom: 30px;
+}
+
+.welcome-header h1 {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+}
+
+.welcome-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Sistema de Grid */
+.ava-grid {
+    display: grid;
+    /* Ajusta para 3 colunas ou menos dependendo da tela */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 350px)); 
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: start; /* Mantém os cards alinhados à esquerda como no AVA */
+}
+
+/* Estilo dos Cards */
+.ava-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    max-width: 350px; /* Limita a largura para a foto não ficar gigante */
+}
+
+.ava-card:hover {
+    transform: translateY(-5px);
+}
+
+.ava-card img {
+    width: 100%;
+    height: 200px; /* Altura fixa para manter o padrão visual */
+    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+    display: block;
+}
+
+.card-footer {
+    padding: 15px;
+    text-align: center;
+    background: #fff;
+}
+/* Botões Estilo AVA */
+.btn-ava {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-ava.orange {
+    background-color: #f39c12;
+    color: white;
+}
+
+.btn-ava:hover {
+    opacity: 0.9;
+}
+/* --- ESTILOS DE AVATAR (FOTO E INICIAIS) --- */
+
+/* Container que envolve a foto ou as iniciais no Header */
+#profileTrigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#profileTrigger:hover {
+    transform: scale(1.05);
+}
+
+/* Estilo para quando o usuário TEM foto salva */
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f1f5f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Estilo para quando o usuário NÃO tem foto (Iniciais) */
+.avatar-initials {
+    width: 42px;
+    height: 42px;
+    background-color: #004481; /* Azul Unisales */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    border: 2px solid #f1f5f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Ajuste no Dropdown para a foto interna (opcional) */
+.dropdown-menu .user-profile-info .user-avatar,
+.dropdown-menu .user-profile-info .avatar-initials {
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+}
