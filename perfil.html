@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha conta :: UniSales</title>
+    <link rel="stylesheet" href="css/perfil.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+
+<body class="ava-account-body">
+
+    <header class="account-top-bar">
+        <div class="top-bar-content">
+            <button class="btn-back" onclick="window.location.href='portal.html'">
+                <iconify-icon icon="material-symbols:arrow-back-rounded"></iconify-icon>
+            </button>
+            <h1>Minha conta</h1>
+        </div>
+    </header>
+
+    <div class="account-wrapper">
+        <nav class="account-nav">
+            <ul>
+                <li><a href="#section-contato" class="nav-item active">Informações de contato</a></li>
+                <li><a href="#section-senha" class="nav-item">Alterar senha</a></li>
+                <li><a href="#section-acessibilidade" class="nav-item">Acessibilidade</a></li>
+                <li><a href="#section-idiomas" class="nav-item">Idiomas</a></li>
+                <li><a href="#section-fuso" class="nav-item">Fuso horário</a></li>
+            </ul>
+        </nav>
+
+        <main class="account-content-container">
+
+            <section id="section-contato" class="section-block">
+                <h2>Informações de contato</h2>
+                <div class="avatar-section">
+                    <div class="avatar-circle">
+                        <img id="preview-foto" src="assets/default-user.png" alt="Perfil">
+                        <label for="input-foto" class="edit-overlay">
+                            <iconify-icon icon="material-symbols:edit-outline"></iconify-icon>
+                        </label>
+                    </div>
+                    <div class="avatar-text">
+                        <span id="display-nome-completo" class="user-name">Carregando...</span>
+                        <input type="file" id="input-foto" accept="image/*" hidden>
+                        <button class="btn-link" onclick="document.getElementById('input-foto').click()">Alterar
+                            foto</button>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>Nome completo</label>
+                    <input type="text" id="edit-nome" class="input-gray" disabled>
+                    <div class="blue-info-box">
+                        <iconify-icon icon="material-symbols:info-outline"></iconify-icon>
+                        <p>Para alterar seu nome entre em contato com o atendimento da sua instituição.</p>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>E-mail</label>
+                    <input type="email" id="edit-email" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
+                </div>
+                <button class="btn-submit" id="btn-salvar-contato">Salvar</button>
+            </section>
+
+            <section id="section-senha" class="section-block">
+                <h2>Alterar Senha</h2>
+
+                <div class="form-field">
+                    <label>Senha atual*</label>
+                    <div class="input-with-icon">
+                        <iconify-icon icon="material-symbols:lock-outline" class="field-icon"></iconify-icon>
+                        <input type="password" placeholder="••••••••">
+                        <iconify-icon icon="material-symbols:visibility-outline" class="pass-toggle"></iconify-icon>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>Nova senha</label>
+                    <div class="input-with-icon">
+                        <iconify-icon icon="material-symbols:lock-outline" class="field-icon"></iconify-icon>
+                        <input type="password" placeholder="Insira uma nova senha">
+                        <iconify-icon icon="material-symbols:visibility-outline" class="pass-toggle"></iconify-icon>
+                    </div>
+                    <div class="password-requirements">
+                        <p>Sua senha deve conter:</p>
+                        <ul>
+                            <li>8 ou mais caracteres;</li>
+                            <li>no mínimo uma letra (maiúscula ou minúscula);</li>
+                            <li>no mínimo um número; e,</li>
+                            <li>no mínimo um caracter especial (.,:;<>?#?!@$%^&*'-)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>Confirmar nova senha*</label>
+                    <div class="input-with-icon">
+                        <iconify-icon icon="material-symbols:lock-outline" class="field-icon"></iconify-icon>
+                        <input type="password" placeholder="Digite novamente a nova senha">
+                        <iconify-icon icon="material-symbols:visibility-outline" class="pass-toggle"></iconify-icon>
+                    </div>
+                </div>
+
+                <button class="btn-submit">Salvar senha</button>
+            </section>
+
+            <section id="section-acessibilidade" class="section-block">
+                <h2>Acessibilidade</h2>
+                <p class="section-description">Aplique as configurações de acessibilidade e terá o recurso disponível em
+                    sua tela a qualquer momento.</p>
+
+                <div class="toggle-field">
+                    <input type="checkbox" id="libras-check">
+                    <label for="libras-check">
+                        <strong>Língua de sinais</strong> Ativar tradução automática.
+                    </label>
+                </div>
+            </section>
+
+            <section id="section-idiomas" class="section-block">
+                <h2>Idiomas</h2>
+                <p class="section-description">Selecione abaixo o <strong>idioma padrão</strong> para sua aplicação</p>
+
+                <div class="language-grid">
+                    <label class="lang-card">
+                        <input type="radio" name="idioma_selecionado" checked>
+                        <span class="radio-custom"></span>
+                        Português (Brasil)
+                        <iconify-icon icon="twemoji:flag-brazil" class="flag"></iconify-icon>
+                    </label>
+
+                    <label class="lang-card">
+                        <input type="radio" name="idioma_selecionado">
+                        <span class="radio-custom"></span>
+                        Inglês (EUA)
+                        <iconify-icon icon="twemoji:flag-united-states" class="flag"></iconify-icon>
+                    </label>
+
+                    <label class="lang-card">
+                        <input type="radio" name="idioma_selecionado">
+                        <span class="radio-custom"></span>
+                        Espanhol
+                        <iconify-icon icon="twemoji:flag-spain" class="flag"></iconify-icon>
+                    </label>
+                </div>
+                <button class="btn-submit">Salvar idioma</button>
+            </section>
+
+            <section id="section-fuso" class="section-block">
+                <h2>Fuso horário</h2>
+                <div class="form-field">
+                    <label>Fuso horário padrão*</label>
+                    <select class="ava-select">
+                        <option>(UTC-03:00) Brasília</option>
+                    </select>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/perfil.js"></script>
+</body>
+
+</html>
