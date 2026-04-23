@@ -1,108 +1,113 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // 1. Tenta recuperar o usuário
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. CARREGAR DADOS DA SESSÃO ---
+    const usuarioJSON = localStorage.getItem('usuarioLogado');
 
-    // 2. ELEMENTOS DA INTERFACE (Protegidos com IF)
-    const displayUserName = document.getElementById('display-user-name');
-    const firstNameDisp = document.getElementById('first-name');
+    if (!usuarioJSON) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    const usuario = JSON.parse(usuarioJSON);
+
+    // --- 2. PREENCHIMENTO DO HEADER E UI ---
+    const userGreeting = document.getElementById('user-greeting');
     const dropFullName = document.getElementById('drop-full-name');
-    const dropEmail = document.getElementById('drop-email');
-    const userInitials = document.getElementById('user-initials');
-    const avatarImg = document.getElementById('user-avatar-img');
-    // LÓGICA DE PESQUISA DO MENU
-    const searchInput = document.getElementById('menuSearch');
-    const clearSearch = document.getElementById('clearSearch');
-    const menuItems = document.querySelectorAll('.nav-link-clone');
+    const profileTrigger = document.getElementById('profileTrigger');
 
-    if (searchInput) {
-        searchInput.addEventListener('input', function () {
-            const term = this.value.toLowerCase();
+    if (userGreeting) userGreeting.innerText = `Olá, ${usuario.nome}`;
+    if (dropFullName) dropFullName.innerText = usuario.nome;
 
-            // Mostrar/Esconder o botão de limpar (X)
-            clearSearch.style.display = term.length > 0 ? 'block' : 'none';
-
-            menuItems.forEach(item => {
-                const text = item.querySelector('.menu-text').innerText.toLowerCase();
-                // Se o termo estiver no texto, mostra. Se não, esconde.
-                if (text.includes(term)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-
-        // Função do botão de limpar
-        clearSearch.addEventListener('click', () => {
-            searchInput.value = '';
-            clearSearch.style.display = 'none';
-            menuItems.forEach(item => item.style.display = 'flex');
-            searchInput.focus();
-        });
-    }
-
-    // Só preenche se o usuário existir e se os elementos estiverem na página atual
-    if (usuario) {
-        if (displayUserName) displayUserName.innerText = usuario.nome;
-        if (dropFullName) dropFullName.innerText = usuario.nome;
-
-        if (firstNameDisp) {
-            firstNameDisp.innerText = usuario.nome.split(' ')[0];
-        }
-
-        if (dropEmail) {
-            dropEmail.innerText = `${usuario.ra}@souunisales.com.br`;
-        }
-
-        if (userInitials) {
-            const nomes = usuario.nome.split(' ');
-            const iniciais = (nomes[0][0] + (nomes.length > 1 ? nomes[nomes.length - 1][0] : '')).toUpperCase();
-            userInitials.innerText = iniciais;
-        }
-
-        if (avatarImg) {
-            // Se o objeto usuario tiver um campo 'foto', usa ele. 
-            // Caso contrário, mantém o que já está no HTML (foto.jpg)
-            if (usuario.foto) {
-                avatarImg.src = usuario.foto;
-            } else {
-                // Opcional: Se quiser usar as iniciais apenas se não houver foto NENHUMA
-                // avatarImg.src = `https://ui-avatars.com/api/?name=...`;
-            }
+    // Lógica de Foto vs Iniciais no Header
+    if (profileTrigger) {
+        if (usuario.foto && usuario.foto.startsWith('data:image')) {
+            profileTrigger.innerHTML = `<img src="${usuario.foto}" class="user-avatar" alt="Perfil">`;
+        } else {
+            const iniciais = usuario.nome.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+            profileTrigger.innerHTML = `<div class="avatar-initials">${iniciais}</div>`;
         }
     }
 
-    // 3. CONTROLE DO MENU LATERAL (Só funciona se o botão existir)
+    // --- 3. PREENCHIMENTO DOS CAMPOS DE EDIÇÃO (PERFIL.HTML) ---
+    const nomeInput = document.getElementById('edit-nome');
+    const emailInput = document.getElementById('edit-email');
+    const displayNomeCompleto = document.getElementById('display-nome-completo');
+    const previewFoto = document.getElementById('preview-foto');
+
+    if (nomeInput) nomeInput.value = usuario.nome;
+    if (displayNomeCompleto) displayNomeCompleto.innerText = usuario.nome;
+    if (emailInput && usuario.email) emailInput.value = usuario.email;
+    if (previewFoto && usuario.foto) previewFoto.src = usuario.foto;
+
+    // --- 4. LÓGICA DA SIDEBAR E DROPDOWN ---
     const menuBtn = document.getElementById('menuBtn');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
+    const userDropdown = document.getElementById('userDropdown');
 
     if (menuBtn && sidebar && mainContent) {
-        menuBtn.addEventListener('click', function () {
+        menuBtn.addEventListener('click', () => {
             sidebar.classList.toggle('collapsed');
             mainContent.classList.toggle('expanded');
         });
     }
 
-    // 4. DROPDOWN PERFIL
-    const profileTrigger = document.getElementById('profileTrigger');
-    const userDropdown = document.getElementById('userDropdown');
-
     if (profileTrigger && userDropdown) {
-        profileTrigger.addEventListener('click', function (e) {
+        profileTrigger.addEventListener('click', (e) => {
             e.stopPropagation();
             userDropdown.classList.toggle('show');
         });
-
         document.addEventListener('click', () => userDropdown.classList.remove('show'));
     }
 
-    // 5. LOGOUT
+    // --- 5. LÓGICA DE EDIÇÃO DE PERFIL (UPLOAD E SALVAR) ---
+    const inputFoto = document.getElementById('input-foto');
+    if (inputFoto) {
+        inputFoto.addEventListener('change', function () {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (previewFoto) previewFoto.src = e.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+        });
+    }
+
+    const btnSalvar = document.getElementById('btn-salvar-contato');
+    if (btnSalvar) {
+        btnSalvar.addEventListener('click', () => {
+            usuario.foto = previewFoto ? previewFoto.src : usuario.foto;
+            usuario.email = emailInput ? emailInput.value : usuario.email;
+
+            localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+            alert('Perfil atualizado com sucesso!');
+            location.reload(); // Recarrega para atualizar o avatar no header também
+        });
+    }
+
+    // --- 6. LOGOUT ---
     const btnLogout = document.getElementById('btnLogout');
     if (btnLogout) {
         btnLogout.addEventListener('click', () => {
             localStorage.removeItem('usuarioLogado');
             window.location.href = 'index.html';
+        });
+    }
+
+    // --- 7. SCROLLSPY (Se as seções existirem) ---
+    const sections = document.querySelectorAll('.content-section');
+    const navLinks = document.querySelectorAll('.nav-item');
+
+    if (sections.length > 0) {
+        window.addEventListener('scroll', () => {
+            let current = "";
+            sections.forEach(section => {
+                if (pageYOffset >= (section.offsetTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) link.classList.add('active');
+            });
         });
     }
 });
