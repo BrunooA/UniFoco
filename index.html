@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login :: Plataforma A</title>
+    <title>Login :: UniSales</title>
     <link rel="stylesheet" href="css/login.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </head>
 <body>
     <div class="login-wrapper">
@@ -15,28 +16,46 @@
 
         <div class="form-side">
             <div class="form-container">
-    <img src="assets/unisales-logo.png" alt="UniSales Logo" class="main-logo">
-    <p class="welcome-text">Seja bem-vindo</p>
-    
-    <form id="loginForm">
-        <div class="input-field">
-            <label for="ra">Usuário (RA)</label>
-            <input type="text" id="ra" placeholder="Digite seu RA" required>
-        </div>
-        <div class="input-field" style="position: relative;">
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" placeholder="Digite sua senha" required>
-            <span style="position: absolute; right: 15px; top: 38px; color: #64748b; cursor: pointer;">
-                <iconify-icon icon="ri:eye-line"></iconify-icon>
-            </span>
-        </div>
-        <button type="submit" class="btn-login">Entrar</button>
-    </form>
+                <img src="assets/unisales-logo.png" alt="UniSales Logo" class="main-logo">
+                <p class="welcome-text">Seja bem-vindo</p>
+                
+                <form id="loginForm" novalidate>
+                    <div class="input-field" id="field-ra">
+                        <div class="input-container">
+                            <label for="ra">Usuário</label>
+                            <div class="input-wrapper-inner">
+                                <iconify-icon icon="ri:user-line" class="main-icon"></iconify-icon>
+                                <input type="text" id="ra" placeholder=" " autocomplete="off">
+                                <div class="actions">
+                                    <iconify-icon icon="ri:close-line" class="clear-btn" id="clear-ra"></iconify-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="error-message">O login é obrigatório</span>
+                    </div>
 
-    <div class="form-footer">
-        <a href="#">Esqueci o usuário</a> <span style="color: #475569; font-weight: normal;">ou</span> <a href="#">Esqueci a senha</a>
-    </div>
-</div>
+                    <div class="input-field" id="field-senha">
+                        <div class="input-container">
+                            <label for="senha">Senha</label>
+                            <div class="input-wrapper-inner">
+                                <iconify-icon icon="ri:lock-line" class="main-icon"></iconify-icon>
+                                <input type="password" id="senha" placeholder=" " autocomplete="off">
+                                <div class="actions">
+                                    <iconify-icon icon="ri:close-line" class="clear-btn" id="clear-senha"></iconify-icon>
+                                    <iconify-icon icon="ri:eye-line" id="togglePassword" class="eye-btn"></iconify-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="error-message">A senha é obrigatória</span>
+                    </div>
+
+                    <button type="submit" class="btn-login">Entrar</button>
+                </form>
+
+                <div class="form-footer">
+                    <a href="#">Esqueci o usuário</a> <span class="sep">ou</span> <a href="#">Esqueci a senha</a>
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/login.js"></script>
